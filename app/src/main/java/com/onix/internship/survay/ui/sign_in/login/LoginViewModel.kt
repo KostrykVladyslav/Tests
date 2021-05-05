@@ -27,12 +27,19 @@ class LoginViewModel(
     private val _errorPassword = MutableLiveData<Boolean>()
     val errorPassword: LiveData<Boolean> = _errorPassword
 
+    private val _incorrectData = MutableLiveData<Boolean>()
+    val incorrectData: LiveData<Boolean> = _incorrectData
+
     fun login() {
         model.apply {
             _errorLogin.value = login.isEmpty()
             _errorPassword.value = password.isEmpty()
+
+
             if (!isError()) {
                 userViewModel.readAllData.observe(viewLifecycleOwner, Observer { user ->
+                    _incorrectData.value = (!isLoginAndPasswordIsCorrect(user, login, password))
+
                     if (isLoginAndPasswordIsCorrect(user, login, password)) {
                         _navigationLiveEvent.value =
                             SignInFragmentDirections.actionSignInFragmentToMainFragment()

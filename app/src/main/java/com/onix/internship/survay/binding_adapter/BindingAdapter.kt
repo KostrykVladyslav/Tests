@@ -10,3 +10,17 @@ fun TextInputLayout.errorMessage(errorState: Boolean){
         context.getString(R.string.field_is_empty)
     } else ""
 }
+
+@BindingAdapter("incorrectPasswordConfirm")
+fun TextInputLayout.incorrectPasswordConfirm(errorState: Boolean){
+    error = if (errorState){
+        context.getString(R.string.incorrect_password_confirm)
+    } else ""
+}
+
+@BindingAdapter("incorrectData")
+fun TextInputLayout.incorrectData(errorState: Boolean){
+    error = if (errorState){
+        context.getString(R.string.incorrect_data)
+    } else ""
+}

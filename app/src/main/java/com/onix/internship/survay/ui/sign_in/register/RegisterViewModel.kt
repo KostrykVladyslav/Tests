@@ -19,6 +19,8 @@ class RegisterViewModel(
     private val _navigationLiveEvent = SingleLiveEvent<NavDirections>()
     val navigationLiveEvent: LiveData<NavDirections> = _navigationLiveEvent
 
+    val model = RegisterModel()
+
     private val _errorFirstName = MutableLiveData<Boolean>()
     val errorFirstName: LiveData<Boolean> = _errorFirstName
 
@@ -34,7 +36,8 @@ class RegisterViewModel(
     private val _errorPasswordConfirm = MutableLiveData<Boolean>()
     val errorPasswordConfirm: LiveData<Boolean> = _errorPasswordConfirm
 
-    val model = RegisterModel()
+    private val _incorrectPassword = MutableLiveData<Boolean>()
+    val incorrectPassword: LiveData<Boolean> = _incorrectPassword
 
     fun register() {
         model.apply {
@@ -43,6 +46,7 @@ class RegisterViewModel(
             _errorLogin.value = login.isEmpty()
             _errorPassword.value = password.isEmpty()
             _errorPasswordConfirm.value = confirmPassword.isEmpty()
+            _incorrectPassword.value = (password != confirmPassword)
 
             if (!isEmpty()) {
                 if (password == confirmPassword) {

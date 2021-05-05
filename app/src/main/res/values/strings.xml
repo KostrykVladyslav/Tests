@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Tests</string>
-    <!-- Strings related to login -->
     <string name="welcome">Welcome</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello">Hello</string>
     <string name="register">Register</string>
     <string name="connect">connect</string>
@@ -12,5 +10,7 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="password_confirmation">Password Confirmation</string>
+    <string name="incorrect_password_confirm">Incorrect password confirmation!</string>
+    <string name="incorrect_data">Incorrect password or login!</string>
     <string name="submit">submit</string>
 </resources>
