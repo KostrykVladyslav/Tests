@@ -27,12 +27,12 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextFirstNameContainer"
             style="@style/Widget.Design.TextInputLayout"
-            android:layout_width="0dp"
+            errorMessage="@{viewModel.errorFirstName}"
+            android:layout_width="@dimen/fill_space"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50sp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="5sp"
-            errorMassage="@{viewModel.errorFirstName}"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginEnd="@dimen/little_margin"
             app:layout_constraintEnd_toStartOf="@+id/editTextLastNameContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/welcomeTextView">
@@ -40,7 +40,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextFirstName"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/edit_text_height"
                 android:hint="@string/first_name"
                 android:inputType="textCapSentences"
                 android:nextFocusDown="@+id/editTextLastName"
@@ -48,15 +48,14 @@
                 android:text="@={viewModel.model.firstName}" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextLastNameContainer"
             style="@style/Widget.Design.TextInputLayout"
-            android:layout_width="0dp"
+            errorMessage="@{viewModel.errorLastName}"
+            android:layout_width="@dimen/fill_space"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="50sp"
-            errorMassage="@{viewModel.errorLastName}"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginEnd="@dimen/margin_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editTextFirstNameContainer"
             app:layout_constraintTop_toBottomOf="@id/welcomeTextView">
@@ -64,22 +63,21 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextLastName"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/edit_text_height"
                 android:hint="@string/last_name"
                 android:inputType="textCapSentences"
                 android:singleLine="true"
                 android:text="@={viewModel.model.lastName}" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextLoginContainer"
             style="@style/Widget.Design.TextInputLayout"
-            android:layout_width="0dp"
+            errorMessage="@{viewModel.errorLogin}"
+            android:layout_width="@dimen/fill_space"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50sp"
-            android:layout_marginTop="30sp"
-            errorMassage="@{viewModel.errorLogin}"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextFirstNameContainer">
@@ -87,21 +85,25 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextLogin"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/edit_text_height"
                 android:hint="@string/login"
                 android:inputType="textCapSentences"
                 android:singleLine="true"
                 android:text="@={viewModel.model.login}" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                loginUsed="@{viewModel.isLoginUsed}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextPasswordContainer"
             style="@style/Widget.Design.TextInputLayout"
-            android:layout_width="0dp"
+            errorMessage="@{viewModel.errorPassword}"
+            android:layout_width="@dimen/fill_space"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50sp"
-            android:layout_marginTop="30sp"
-            errorMassage="@{viewModel.errorPassword}"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextLoginContainer">
@@ -109,7 +111,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/edit_text_height"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:singleLine="true"
@@ -119,12 +121,11 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextPasswordConfirmContainer"
             style="@style/Widget.Design.TextInputLayout"
-            android:layout_width="0dp"
+            errorMessage="@{viewModel.errorPasswordConfirm}"
+            android:layout_width="@dimen/fill_space"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50sp"
-            android:layout_marginTop="30sp"
-            incorrectPasswordConfirm="@{viewModel.incorrectPassword}"
-            errorMassage="@{viewModel.errorPasswordConfirm}"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextPasswordContainer">
@@ -132,18 +133,24 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPasswordConfirm"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/edit_text_height"
                 android:hint="@string/password_confirmation"
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:text="@={viewModel.model.confirmPassword}" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                incorrectPasswordConfirm="@{viewModel.incorrectPassword}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             style="@style/greenButtonStyle"
-            android:layout_width="130sp"
-            android:layout_height="40sp"
-            android:layout_marginTop="30sp"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/margin_top"
             android:background="@color/green"
             android:onClick="@{() -> viewModel.register()}"
             android:text="@string/submit"

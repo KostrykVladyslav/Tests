@@ -1,6 +1,6 @@
 package com.onix.internship.survay.ui.sign_in.login
 
-import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,11 +11,11 @@ import java.lang.IllegalArgumentException
 class LoginViewModelFactory(
     private val userViewModel: UserViewModel,
     private val viewLifecycleOwner: LifecycleOwner,
-    private val context: Context?
+    private val activity: FragmentActivity?
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(userViewModel, viewLifecycleOwner, context) as T
+            return LoginViewModel(userViewModel, viewLifecycleOwner, activity) as T
         }
         throw IllegalArgumentException("Unknown viewModel class")
     }

@@ -1,8 +1,7 @@
 package com.onix.internship.survay.ui.sign_in.login
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import com.onix.internship.survay.data.user.User
@@ -13,7 +12,7 @@ import com.onix.internship.survay.ui.sign_in.SignInFragmentDirections
 class LoginViewModel(
     private val userViewModel: UserViewModel,
     private val viewLifecycleOwner: LifecycleOwner,
-    @field:SuppressLint("StaticFieldLeak") private val context: Context?
+    activity: FragmentActivity?,
 ) : ViewModel() {
 
     private val _navigationLiveEvent = SingleLiveEvent<NavDirections>()
@@ -30,30 +29,32 @@ class LoginViewModel(
     private val _incorrectData = MutableLiveData<Boolean>()
     val incorrectData: LiveData<Boolean> = _incorrectData
 
+    private val preferences = activity?.getPreferences(Context.MODE_PRIVATE)
+    private val editor = preferences?.edit()
+
     fun login() {
         model.apply {
             _errorLogin.value = login.isEmpty()
             _errorPassword.value = password.isEmpty()
 
-
             if (!isError()) {
                 userViewModel.readAllData.observe(viewLifecycleOwner, Observer { user ->
-                    _incorrectData.value = (!isLoginAndPasswordIsCorrect(user, login, password))
+                    _incorrectData.value = (!isLoginAndPasswordCorrect(user, login, password))
 
-                    if (isLoginAndPasswordIsCorrect(user, login, password)) {
+                    if (isLoginAndPasswordCorrect(user, login, password)) {
                         _navigationLiveEvent.value =
                             SignInFragmentDirections.actionSignInFragmentToMainFragment()
-                    } else {
-                        Toast
-                            .makeText(context, "Data is incorrect!", Toast.LENGTH_SHORT)
-                            .show()
+
+                        editor?.putBoolean("is_signed", true)
+                        editor?.putString("login", login)
+                        editor?.apply()
                     }
                 })
             }
         }
     }
 
-    private fun isLoginAndPasswordIsCorrect(
+    private fun isLoginAndPasswordCorrect(
         user: List<User>,
         login: String,
         password: String
@@ -64,7 +65,6 @@ class LoginViewModel(
                 return true
             }
         }
-
         return false
     }
 }

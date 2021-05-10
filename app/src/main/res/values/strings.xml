@@ -13,4 +13,5 @@
     <string name="incorrect_password_confirm">Incorrect password confirmation!</string>
     <string name="incorrect_data">Incorrect password or login!</string>
     <string name="submit">submit</string>
+    <string name="login_used">This login has been used!</string>
 </resources>

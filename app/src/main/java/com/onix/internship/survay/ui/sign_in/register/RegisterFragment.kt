@@ -1,17 +1,19 @@
 package com.onix.internship.survay.ui.sign_in.register
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.onix.internship.survay.data.user.UserViewModel
 import com.onix.internship.survay.databinding.FragmentRegisterBinding
 
+@Suppress("DEPRECATION")
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
@@ -20,7 +22,7 @@ class RegisterFragment : Fragment() {
         RegisterViewModelFactory(
             userViewModel,
             viewLifecycleOwner,
-            context
+            activity
         )
     }
 
@@ -29,6 +31,7 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
 
         binding = FragmentRegisterBinding.inflate(inflater)
         return binding.root

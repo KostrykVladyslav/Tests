@@ -3,6 +3,7 @@ package com.onix.internship.survay.ui.sign_in.register
 import android.os.Parcelable
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import com.onix.internship.survay.data.user.User
 import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
@@ -13,7 +14,7 @@ data class RegisterModel(
     var _login: String = "",
     var _password: String = "",
     var _confirmPassword: String = ""
-    ) : BaseObservable(), Parcelable {
+) : BaseObservable(), Parcelable {
 
     @IgnoredOnParcel
     @get:Bindable
@@ -55,6 +56,21 @@ data class RegisterModel(
             field = value
         }
 
-    fun isEmpty() = firstName.isEmpty() || lastName.isEmpty()
-            || login.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()
+    fun isError() = firstName.isEmpty()
+            || lastName.isEmpty()
+            || login.isEmpty()
+            || password.isEmpty()
+            || confirmPassword.isEmpty()
+            || errorPasswordConfirm()
+
+    fun isLoginDuplicate(login: String, list: List<User>): Boolean {
+        for (item in list) {
+            if (login == item.login) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun errorPasswordConfirm(): Boolean = password != confirmPassword
 }

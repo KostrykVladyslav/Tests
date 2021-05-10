@@ -1,1 +1,9 @@
-<resources />
+<resources >
+    <dimen name="fill_space">0dp</dimen>
+    <dimen name="margin_horizontal">50sp</dimen>
+    <dimen name="margin_top">30dp</dimen>
+    <dimen name="edit_text_height">65dp</dimen>
+    <dimen name="button_height">40sp</dimen>
+    <dimen name="button_width">150sp</dimen>
+    <dimen name="little_margin">5sp</dimen>
+</resources>

@@ -1,6 +1,6 @@
 package com.onix.internship.survay.ui.sign_in.register
 
-import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,12 +11,12 @@ import java.lang.IllegalArgumentException
 class RegisterViewModelFactory(
     private val userViewModel: UserViewModel,
     private val viewLifecycleOwner: LifecycleOwner,
-    private val context: Context?
+    private val activity: FragmentActivity?
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
-            return RegisterViewModel(userViewModel, viewLifecycleOwner, context) as T
+            return RegisterViewModel(userViewModel, viewLifecycleOwner, activity) as T
         }
         throw IllegalArgumentException("Unknown viewModel class")
     }
