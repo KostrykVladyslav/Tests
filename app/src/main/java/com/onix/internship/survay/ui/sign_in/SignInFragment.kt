@@ -37,7 +37,7 @@ class SignInFragment : Fragment() {
         val preferences = activity?.getPreferences(Context.MODE_PRIVATE)
         if (preferences != null) {
             if (preferences.getBoolean("is_signed", false)) {
-                findNavController().navigate(R.id.action_signInFragment_to_mainFragment)
+                findNavController().navigate(R.id.action_signInFragment_to_AdminFragment)
             }
         }
 

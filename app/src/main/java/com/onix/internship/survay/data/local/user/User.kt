@@ -1,4 +1,4 @@
-package com.onix.internship.survay.data.user
+package com.onix.internship.survay.data.local.user
 
 import android.os.Parcelable
 import androidx.room.Entity
@@ -9,10 +9,10 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "user_table")
 data class User(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val firstName: String,
-    val lastName: String,
-    val login: String,
-    val password: String,
-    val role: Int
+    var id: Int = 0,
+    var firstName: String = "",
+    var lastName: String = "",
+    var login: String = "",
+    var password: String = "",
+    var role: Int = 0
 ): Parcelable

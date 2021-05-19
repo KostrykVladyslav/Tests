@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.onix.internship.survay.ui.sign_in.login.LoginViewModel" />
@@ -27,12 +26,12 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextLoginContainer"
             style="@style/Widget.Design.TextInputLayout"
-            errorMessage="@{viewModel.errorLogin}"
             android:layout_width="@dimen/fill_space"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_horizontal"
             android:layout_marginTop="@dimen/margin_top"
             app:errorEnabled="true"
+            errorMessage="@{viewModel.errorLogin}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/helloTextView">
@@ -50,12 +49,12 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextPasswordContainer"
             style="@style/Widget.Design.TextInputLayout"
-            errorMessage="@{viewModel.errorPassword}"
             android:layout_width="@dimen/fill_space"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_horizontal"
             android:layout_marginTop="@dimen/margin_top"
             app:errorEnabled="true"
+            errorMessage="@{viewModel.errorPassword}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextLoginContainer">
@@ -68,11 +67,6 @@
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:text="@={viewModel.model.password}" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                incorrectData="@{viewModel.incorrectData}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
