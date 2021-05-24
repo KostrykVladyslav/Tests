@@ -3,31 +3,15 @@ package com.onix.internship.survay.binding_adapter
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.onix.internship.survay.R
+import com.onix.internship.survay.arch.error_states.ErrorStates
 
 @BindingAdapter("errorMessage")
-fun TextInputLayout.errorMessage(errorState: Boolean){
-    error = if (errorState){
-        context.getString(R.string.field_is_empty)
-    } else ""
-}
-
-@BindingAdapter("incorrectPasswordConfirm")
-fun TextInputLayout.incorrectPasswordConfirm(errorState: Boolean){
-    error = if (errorState){
-        context.getString(R.string.incorrect_password_confirm)
-    } else ""
-}
-
-@BindingAdapter("incorrectData")
-fun TextInputLayout.incorrectData(errorState: Boolean){
-    error = if (errorState){
-        context.getString(R.string.incorrect_data)
-    } else ""
-}
-
-@BindingAdapter("loginUsed")
-fun TextInputLayout.loginUsed(errorState: Boolean){
-    error = if (errorState){
-        context.getString(R.string.login_used)
-    } else ""
+fun TextInputLayout.errorMessage(errorStates: ErrorStates){
+    error = when (errorStates){
+        ErrorStates.NONE -> ""
+        ErrorStates.EMPTY_FIELD -> context.getString(R.string.field_is_empty)
+        ErrorStates.INCORRECT_DATA -> context.getString(R.string.incorrect_data)
+        ErrorStates.LOGIN_HAS_USED -> context.getString(R.string.login_used)
+        ErrorStates.PASSWORD_NOT_THE_SAME -> context.getString(R.string.incorrect_password_confirm)
+    }
 }

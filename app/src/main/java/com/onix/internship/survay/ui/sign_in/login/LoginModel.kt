@@ -3,6 +3,8 @@ package com.onix.internship.survay.ui.sign_in.login
 import android.os.Parcelable
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.library.baseAdapters.BR
+import com.onix.internship.survay.arch.error_states.ErrorStates
 import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
@@ -18,6 +20,7 @@ data class LoginModel(
         set(value) {
             _login = value
             field = value
+            notifyPropertyChanged(BR.login)
         }
 
     @IgnoredOnParcel
@@ -26,7 +29,22 @@ data class LoginModel(
         set(value) {
             _password = value
             field = value
+            notifyPropertyChanged(BR.password)
         }
+
+    fun isPasswordEmpty(): ErrorStates {
+        return if (password.isEmpty())
+            ErrorStates.EMPTY_FIELD
+        else
+            ErrorStates.NONE
+    }
+
+    fun isLoginEmpty(): ErrorStates {
+        return if (login.isEmpty())
+            ErrorStates.EMPTY_FIELD
+        else
+            ErrorStates.NONE
+    }
 
     fun isError() = login.isEmpty() || password.isEmpty()
 }

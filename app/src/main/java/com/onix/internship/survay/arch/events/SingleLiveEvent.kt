@@ -1,4 +1,4 @@
-package com.onix.internship.survay.events
+package com.onix.internship.survay.arch.events
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData

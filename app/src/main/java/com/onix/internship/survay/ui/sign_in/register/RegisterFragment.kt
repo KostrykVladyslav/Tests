@@ -6,21 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.onix.internship.survay.data.user.UserViewModel
+import com.onix.internship.survay.data.local.SurveyDatabase
 import com.onix.internship.survay.databinding.FragmentRegisterBinding
 
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION", "COMPATIBILITY_WARNING")
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
-    private lateinit var userViewModel: UserViewModel
     private val viewModel: RegisterViewModel by viewModels {
         RegisterViewModelFactory(
-            userViewModel,
+            SurveyDatabase.getDatabase(requireContext()),
             viewLifecycleOwner,
             activity
         )
@@ -30,9 +28,6 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-
-
         binding = FragmentRegisterBinding.inflate(inflater)
         return binding.root
     }

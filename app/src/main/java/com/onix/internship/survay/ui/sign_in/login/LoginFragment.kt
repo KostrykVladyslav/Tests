@@ -7,22 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.onix.internship.survay.data.user.UserViewModel
+import com.onix.internship.survay.data.local.SurveyDatabase
 import com.onix.internship.survay.databinding.FragmentLoginBinding
 
 @Suppress("DEPRECATION", "COMPATIBILITY_WARNING")
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var userViewModel: UserViewModel
     private val viewModel: LoginViewModel by viewModels {
         LoginViewModelFactory(
-            userViewModel,
-            viewLifecycleOwner,
+            SurveyDatabase.getDatabase(requireContext()),
             activity
         )
     }
@@ -32,7 +29,6 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         binding = FragmentLoginBinding.inflate(inflater)
 
 
