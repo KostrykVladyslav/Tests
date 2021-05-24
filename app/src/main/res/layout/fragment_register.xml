@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.onix.internship.survay.ui.sign_in.register.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.sign_in.register.RegisterFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/welcomeTextView"
+            style="@style/singInTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextFirstNameContainer"
+            style="@style/Widget.Design.TextInputLayout"
+            errorMessage="@{viewModel.errorFirstName}"
+            android:layout_width="@dimen/fill_space"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginEnd="@dimen/little_margin"
+            app:layout_constraintEnd_toStartOf="@+id/editTextLastNameContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/welcomeTextView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:hint="@string/first_name"
+                android:inputType="textCapSentences"
+                android:nextFocusDown="@+id/editTextLastName"
+                android:singleLine="true"
+                android:text="@={viewModel.model.firstName}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextLastNameContainer"
+            style="@style/Widget.Design.TextInputLayout"
+            errorMessage="@{viewModel.errorLastName}"
+            android:layout_width="@dimen/fill_space"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editTextFirstNameContainer"
+            app:layout_constraintTop_toBottomOf="@id/welcomeTextView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextLastName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:hint="@string/last_name"
+                android:inputType="textCapSentences"
+                android:singleLine="true"
+                android:text="@={viewModel.model.lastName}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextLoginContainer"
+            style="@style/Widget.Design.TextInputLayout"
+            errorMessage="@{viewModel.errorLogin}"
+            android:layout_width="@dimen/fill_space"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextFirstNameContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextLogin"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:hint="@string/login"
+                android:inputType="textCapSentences"
+                android:singleLine="true"
+                android:text="@={viewModel.model.login}" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                loginUsed="@{viewModel.isLoginUsed}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextPasswordContainer"
+            style="@style/Widget.Design.TextInputLayout"
+            errorMessage="@{viewModel.errorPassword}"
+            android:layout_width="@dimen/fill_space"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextLoginContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:text="@={viewModel.model.password}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextPasswordConfirmContainer"
+            style="@style/Widget.Design.TextInputLayout"
+            errorMessage="@{viewModel.errorPasswordConfirm}"
+            android:layout_width="@dimen/fill_space"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextPasswordContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPasswordConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:hint="@string/password_confirmation"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:text="@={viewModel.model.confirmPassword}" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                incorrectPasswordConfirm="@{viewModel.incorrectPassword}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/greenButtonStyle"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@color/green"
+            android:onClick="@{() -> viewModel.register()}"
+            android:text="@string/submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextPasswordConfirmContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
